@@ -3,66 +3,58 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>하트 불꽃 배경</title>
+<title>하트 불꽃 배경 - 화이트</title>
 
 <style>
 :root{
-    --bg1:#0b0f1e; --bg2:#151a33;
     --pink:#ff8fb3; --mint:#2dd4bf;
     --sky:#7dd3fc; --vio:#a78bfa; --gold:#ffd166;
 }
 
+/* 배경 흰색 */
 html,body{
   margin:0; padding:0;
   width:100%; height:100%;
   overflow:hidden;
-  background:
-      radial-gradient(1200px 800px at 10% 0%, #2a376555 0%, transparent 60%),
-      radial-gradient(1000px 900px at 100% 30%, #13243f66 0%, transparent 60%),
-      linear-gradient(180deg, var(--bg1), var(--bg2));
+  background:#ffffff;
 }
 
 /* 중앙 텍스트 */
 .center-text{
   position:fixed;
-  top:50%;
-  left:50%;
+  top:50%; left:50%;
   transform:translate(-50%,-50%);
-  color:#ffe9a9;
+  color:#444;
   font-size:48px;
-  font-weight:600;
+  font-weight:700;
   text-align:center;
-  text-shadow:0 0 12px rgba(255,255,200,0.8);
   z-index:99;
   font-family:'Pretendard', sans-serif;
 }
 
-/* 별가루 */
+/* 별가루 — 화이트 배경에 어울리게 은은한 회색 */
 .glitter{
   position:fixed; inset:0;
   pointer-events:none;
-  opacity:.25; mix-blend-mode:screen;
+  opacity:.2;
   background:
-    radial-gradient(2px 2px at 12% 18%, rgba(255,255,255,.7), transparent 60%),
-    radial-gradient(2px 2px at 32% 40%, rgba(255,255,255,.6), transparent 60%),
-    radial-gradient(2px 2px at 56% 26%, rgba(255,255,255,.65), transparent 60%),
-    radial-gradient(2px 2px at 76% 58%, rgba(255,255,255,.55), transparent 60%),
-    radial-gradient(2px 2px at 88% 34%, rgba(255,255,255,.6), transparent 60%),
-    radial-gradient(2px 2px at 22% 72%, rgba(255,255,255,.6), transparent 60%),
-    radial-gradient(2px 2px at 44% 86%, rgba(255,255,255,.5), transparent 60%);
-  filter:blur(.2px);
-  animation:twinkle 2.6s linear infinite;
-}
-@keyframes twinkle{
-  0%,100%{filter:brightness(1)}
-  50%{filter:brightness(1.4)}
+    radial-gradient(2px 2px at 12% 18%, rgba(0,0,0,.15), transparent 60%),
+    radial-gradient(2px 2px at 32% 40%, rgba(0,0,0,.15), transparent 60%),
+    radial-gradient(2px 2px at 56% 26%, rgba(0,0,0,.15), transparent 60%),
+    radial-gradient(2px 2px at 76% 58%, rgba(0,0,0,.15), transparent 60%),
+    radial-gradient(2px 2px at 88% 34%, rgba(0,0,0,.15), transparent 60%),
+    radial-gradient(2px 2px at 22% 72%, rgba(0,0,0,.15), transparent 60%),
+    radial-gradient(2px 2px at 44% 86%, rgba(0,0,0,.15), transparent 60%);
+  filter:blur(.3px);
 }
 
+/* 불꽃 스테이지 */
 .stage{
   position:fixed; inset:0;
   pointer-events:none;
 }
 
+/* 하트 */
 .heart{
   position:absolute;
   width:20px; height:20px;
@@ -86,6 +78,7 @@ html,body{
 .c-vio{color:var(--vio)}
 .c-gold{color:var(--gold)}
 
+/* 폭죽 컨테이너 */
 .burst{
   position:absolute;
   left:50%; top:50%;
@@ -98,6 +91,7 @@ html,body{
   100%{transform:translate(-50%,-50%) scale(1); opacity:0}
 }
 
+/* 하트 이동 */
 .burst .heart{
   animation:fly var(--dur,2.2s) ease-out infinite;
 }
@@ -107,6 +101,7 @@ html,body{
   100%{opacity:0; transform:rotate(45deg) translate(var(--dx),var(--dy)) scale(1)}
 }
 
+/* 방향 */
 .p1{--dx:0; --dy:-160px}
 .p2{--dx:120px; --dy:-120px}
 .p3{--dx:160px; --dy:0}
@@ -116,10 +111,12 @@ html,body{
 .p7{--dx:-160px; --dy:0}
 .p8{--dx:-120px; --dy:-120px}
 
+/* 크기 */
 .s1 .heart{scale:.9}
 .s2 .heart{scale:1.05}
 .s3 .heart{scale:1.2}
 
+/* 랜덤 위치 */
 .bA{left:18%; top:62%; --dur:2.0s; animation-delay:.2s}
 .bB{left:28%; top:30%; --dur:2.4s; animation-delay:.8s}
 .bC{left:42%; top:52%; --dur:2.1s; animation-delay:1.4s}
@@ -133,51 +130,66 @@ html,body{
 
 <body>
 
-<!-- 중앙 텍스트 -->
-<div class="center-text">경락아 결혼 축하해 💛</div>
+<!-- 중앙 문구 -->
+<div class="center-text">  🎉경락아 결혼 축하해 🎉</div>
 
 <div class="glitter"></div>
 
 <div class="stage">
   <div class="burst bA s1">
-    <div class="heart p1 c-pink"></div><div class="heart p2 c-mint"></div><div class="heart p3 c-sky"></div><div class="heart p4 c-vio"></div>
-    <div class="heart p5 c-gold"></div><div class="heart p6 c-pink"></div><div class="heart p7 c-mint"></div><div class="heart p8 c-sky"></div>
+    <div class="heart p1 c-pink"></div><div class="heart p2 c-mint"></div>
+    <div class="heart p3 c-sky"></div><div class="heart p4 c-vio"></div>
+    <div class="heart p5 c-gold"></div><div class="heart p6 c-pink"></div>
+    <div class="heart p7 c-mint"></div><div class="heart p8 c-sky"></div>
   </div>
 
   <div class="burst bB s2">
-    <div class="heart p1 c-sky"></div><div class="heart p2 c-gold"></div><div class="heart p3 c-pink"></div><div class="heart p4 c-mint"></div>
-    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div><div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
+    <div class="heart p1 c-sky"></div><div class="heart p2 c-gold"></div>
+    <div class="heart p3 c-pink"></div><div class="heart p4 c-mint"></div>
+    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div>
+    <div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
   </div>
 
   <div class="burst bC s1">
-    <div class="heart p1 c-mint"></div><div class="heart p2 c-pink"></div><div class="heart p3 c-vio"></div><div class="heart p4 c-sky"></div>
-    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div><div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
+    <div class="heart p1 c-mint"></div><div class="heart p2 c-pink"></div>
+    <div class="heart p3 c-vio"></div><div class="heart p4 c-sky"></div>
+    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div>
+    <div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
   </div>
 
   <div class="burst bD s3">
-    <div class="heart p1 c-gold"></div><div class="heart p2 c-sky"></div><div class="heart p3 c-mint"></div><div class="heart p4 c-pink"></div>
-    <div class="heart p5 c-vio"></div><div class="heart p6 c-sky"></div><div class="heart p7 c-gold"></div><div class="heart p8 c-mint"></div>
+    <div class="heart p1 c-gold"></div><div class="heart p2 c-sky"></div>
+    <div class="heart p3 c-mint"></div><div class="heart p4 c-pink"></div>
+    <div class="heart p5 c-vio"></div><div class="heart p6 c-sky"></div>
+    <div class="heart p7 c-gold"></div><div class="heart p8 c-mint"></div>
   </div>
 
   <div class="burst bE s2">
-    <div class="heart p1 c-pink"></div><div class="heart p2 c-vio"></div><div class="heart p3 c-gold"></div><div class="heart p4 c-sky"></div>
+    <div class="heart p1 c-pink"></div><div class="heart p2 c-vio"></div>
+    <div class="heart p3 c-gold"></div><div class="heart p4 c-sky"></div>
     <div class="heart p5 c-mint"></div><div class="heart p6 c-pink"></div>
     <div class="heart p7 c-sky"></div><div class="heart p8 c-vio"></div>
   </div>
 
   <div class="burst bF s1">
-    <div class="heart p1 c-sky"></div><div class="heart p2 c-mint"></div><div class="heart p3 c-pink"></div><div class="heart p4 c-gold"></div>
-    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div><div class="heart p7 c-pink"></div><div class="heart p8 c-mint"></div>
+    <div class="heart p1 c-sky"></div><div class="heart p2 c-mint"></div>
+    <div class="heart p3 c-pink"></div><div class="heart p4 c-gold"></div>
+    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div>
+    <div class="heart p7 c-pink"></div><div class="heart p8 c-mint"></div>
   </div>
 
   <div class="burst bG s2">
-    <div class="heart p1 c-mint"></div><div class="heart p2 c-sky"></div><div class="heart p3 c-gold"></div><div class="heart p4 c-vio"></div>
-    <div class="heart p5 c-pink"></div><div class="heart p6 c-sky"></div><div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
+    <div class="heart p1 c-mint"></div><div class="heart p2 c-sky"></div>
+    <div class="heart p3 c-gold"></div><div class="heart p4 c-vio"></div>
+    <div class="heart p5 c-pink"></div><div class="heart p6 c-sky"></div>
+    <div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
   </div>
 
   <div class="burst bH s3">
-    <div class="heart p1 c-vio"></div><div class="heart p2 c-pink"></div><div class="heart p3 c-sky"></div><div class="heart p4 c-mint"></div>
-    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div><div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
+    <div class="heart p1 c-vio"></div><div class="heart p2 c-pink"></div>
+    <div class="heart p3 c-sky"></div><div class="heart p4 c-mint"></div>
+    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div>
+    <div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
   </div>
 </div>
 
