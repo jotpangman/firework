@@ -1,60 +1,33 @@
-  .photos{
-    max-width:720px;
-    margin:24px auto 0;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-  .photos figure{
-    margin:0;
-    background:rgba(0,0,0,.35);
-    border-radius:16px;
-    padding:10px;
-  }
-  .photos img{
-    width:100%;
-    display:block;
-    border-radius:12px;
-  }
-  .photos figcaption{
-    margin-top:6px;
-    font-size:14px;
-    opacity:.9;
-  }
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>하트 불꽃놀이 — 무한 루프 · No JS</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>하트 불꽃 배경</title>
 
-<!-- ===========================
-     메인 CSS (하트 불꽃놀이)
-     =========================== -->
 <style>
 :root{
-    --bg1:#0b0f1e; --bg2:#151a33; --ink:#f6f8ff;
-    --pink:#ff8fb3; --mint:#2dd4bf; --sky:#7dd3fc; --vio:#a78bfa; --gold:#ffd166;
+    --bg1:#0b0f1e; --bg2:#151a33;
+    --pink:#ff8fb3; --mint:#2dd4bf;
+    --sky:#7dd3fc; --vio:#a78bfa; --gold:#ffd166;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  color:var(--ink);
-  font-family:'Pretendard', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Apple Color Emoji, Segoe UI Emoji;
-  background:
-    radial-gradient(1200px 800px at 10% 0%, #2a376555 0%, transparent 60%),
-    radial-gradient(1000px 900px at 100% 30%, #13243f66 0%, transparent 60%),
-    linear-gradient(180deg, var(--bg1), var(--bg2));
+/* 기본 화면 */
+html,body{
+  margin:0; padding:0;
+  width:100%; height:100%;
   overflow:hidden;
+  background:
+      radial-gradient(1200px 800px at 10% 0%, #2a376555 0%, transparent 60%),
+      radial-gradient(1000px 900px at 100% 30%, #13243f66 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg1), var(--bg2));
 }
 
-/* 은은한 별가루 */
+/* 별가루 */
 .glitter{
-  position:fixed; inset:0; pointer-events:none; opacity:.25; mix-blend-mode:screen;
+  position:fixed; inset:0;
+  pointer-events:none;
+  opacity:.25; mix-blend-mode:screen;
   background:
     radial-gradient(2px 2px at 12% 18%, rgba(255,255,255,.7), transparent 60%),
     radial-gradient(2px 2px at 32% 40%, rgba(255,255,255,.6), transparent 60%),
@@ -63,43 +36,38 @@ body{
     radial-gradient(2px 2px at 88% 34%, rgba(255,255,255,.6), transparent 60%),
     radial-gradient(2px 2px at 22% 72%, rgba(255,255,255,.6), transparent 60%),
     radial-gradient(2px 2px at 44% 86%, rgba(255,255,255,.5), transparent 60%);
-  filter: blur(.2px);
-  animation: twinkle 2.6s linear infinite;
+  filter:blur(.2px);
+  animation:twinkle 2.6s linear infinite;
 }
 @keyframes twinkle{
   0%,100%{filter:brightness(1)}
   50%{filter:brightness(1.4)}
 }
 
-/* 하트 불꽃 스테이지 */
+/* 전체 불꽃 스테이지 */
 .stage{
-  position:fixed; inset:0; pointer-events:none;
+  position:fixed; inset:0;
+  pointer-events:none;
 }
 
-/* 하트 모양 */
+/* 하트 */
 .heart{
   position:absolute;
-  width:20px;
-  height:20px;
-  transform: rotate(45deg);
+  width:20px; height:20px;
+  transform:rotate(45deg);
   background:currentColor;
   border-radius:4px;
   opacity:0;
-  will-change: transform, opacity;
 }
-.heart::before,
-.heart::after{
-  content:"";
-  position:absolute;
-  width:20px;
-  height:20px;
+.heart::before,.heart::after{
+  content:""; position:absolute;
+  width:20px; height:20px;
   background:currentColor;
   border-radius:50%;
 }
 .heart::before{left:-10px}
 .heart::after{top:-10px}
 
-/* 색상 */
 .c-pink{color:var(--pink)}
 .c-mint{color:var(--mint)}
 .c-sky{color:var(--sky)}
@@ -111,45 +79,40 @@ body{
   position:absolute;
   left:50%; top:50%;
   transform:translate(-50%,-50%);
-  filter:drop-shadow(0 0 10px rgba(255,255,255,.35));
   animation:heartburst var(--dur,2.2s) ease-out infinite;
 }
-
-/* 퍼졌다 사라짐 */
 @keyframes heartburst{
   0%{transform:translate(-50%,-50%) scale(.2); opacity:0}
-  8%{opacity:1}
-  55%{opacity:1}
+  8%,55%{opacity:1}
   100%{transform:translate(-50%,-50%) scale(1); opacity:0}
 }
 
-/* 하트 파편 이동 */
+/* 하트 움직임 */
 .burst .heart{
   animation:fly var(--dur,2.2s) ease-out infinite;
 }
 @keyframes fly{
   0%{opacity:0; transform:rotate(45deg) translate(0,0) scale(.4)}
-  8%{opacity:1}
-  80%{opacity:1}
+  8%,80%{opacity:1}
   100%{opacity:0; transform:rotate(45deg) translate(var(--dx),var(--dy)) scale(1)}
 }
 
-/* 8방향 파편 */
-.p1{--dx:0px;   --dy:-160px}
+/* 8방향 */
+.p1{--dx:0; --dy:-160px}
 .p2{--dx:120px; --dy:-120px}
-.p3{--dx:160px; --dy:0px}
+.p3{--dx:160px; --dy:0}
 .p4{--dx:120px; --dy:120px}
-.p5{--dx:0px;   --dy:160px}
-.p6{--dx:-120px;--dy:120px}
-.p7{--dx:-160px;--dy:0px}
-.p8{--dx:-120px;--dy:-120px}
+.p5{--dx:0; --dy:160px}
+.p6{--dx:-120px; --dy:120px}
+.p7{--dx:-160px; --dy:0}
+.p8{--dx:-120px; --dy:-120px}
 
-/* 크기 변주 */
+/* 크기 다양화 */
 .s1 .heart{scale:.9}
 .s2 .heart{scale:1.05}
 .s3 .heart{scale:1.2}
 
-/* 여러 위치로 분산 */
+/* 화면에 랜덤 배치 */
 .bA{left:18%; top:62%; --dur:2.0s; animation-delay:.2s}
 .bB{left:28%; top:30%; --dur:2.4s; animation-delay:.8s}
 .bC{left:42%; top:52%; --dur:2.1s; animation-delay:1.4s}
@@ -158,130 +121,55 @@ body{
 .bF{left:82%; top:22%; --dur:2.5s; animation-delay:1.2s}
 .bG{left:12%; top:42%; --dur:2.2s; animation-delay:.4s}
 .bH{left:50%; top:18%; --dur:2.7s; animation-delay:1.0s}
-
-/* 텍스트 레이어 */
-.content{
-  position:relative;
-  z-index:10;
-  text-align:center;
-  padding:10vh 16px 12vh;
-}
-h1{
-  margin:0 0 10px;
-  font-size:clamp(32px,7vw,64px);
-  background:linear-gradient(90deg,#fff,var(--gold),#fff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-p{
-  margin:0 auto;
-  max-width:720px;
-  opacity:.92;
-}
-
-/* =====================================
-   ★★★ 나모 에디터에서도 보이게 하는 패치 ★★★
-   ===================================== */
-.heart,
-.heart::before,
-.heart::after{
-  width:20px !important;
-  height:20px !important;
-}
-
-.glitter{z-index:1 !important;}
-.stage{z-index:2 !important;}
-.content{z-index:3 !important;}
-
-.burst .heart{
-  animation:fly var(--dur,2.2s) ease-out infinite !important;
-}
-
-.stage, .burst, .heart{
-  transform:translateZ(0);
-  will-change:transform,opacity;
-}
-
 </style>
-
-<!-- 나모 기본 CSS (그대로 두되, 위 패치가 최종 적용) -->
-<style id="NamoSE__GeneralStyle">
-body{font-family:굴림; color:#000; font-size:10pt;}
-p,li{line-height:1.2;}
-</style>
-
 </head>
+
 <body>
 
 <div class="glitter"></div>
 
-<!-- 하트 불꽃 스테이지 -->
 <div class="stage">
   <div class="burst bA s1">
-    <div class="heart p1 c-pink"></div><div class="heart p2 c-mint"></div>
-    <div class="heart p3 c-sky"></div><div class="heart p4 c-vio"></div>
-    <div class="heart p5 c-gold"></div><div class="heart p6 c-pink"></div>
-    <div class="heart p7 c-mint"></div><div class="heart p8 c-sky"></div>
+    <div class="heart p1 c-pink"></div><div class="heart p2 c-mint"></div><div class="heart p3 c-sky"></div><div class="heart p4 c-vio"></div>
+    <div class="heart p5 c-gold"></div><div class="heart p6 c-pink"></div><div class="heart p7 c-mint"></div><div class="heart p8 c-sky"></div>
   </div>
 
   <div class="burst bB s2">
-    <div class="heart p1 c-sky"></div><div class="heart p2 c-gold"></div>
-    <div class="heart p3 c-pink"></div><div class="heart p4 c-mint"></div>
-    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div>
-    <div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
+    <div class="heart p1 c-sky"></div><div class="heart p2 c-gold"></div><div class="heart p3 c-pink"></div><div class="heart p4 c-mint"></div>
+    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div><div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
   </div>
 
   <div class="burst bC s1">
-    <div class="heart p1 c-mint"></div><div class="heart p2 c-pink"></div>
-    <div class="heart p3 c-vio"></div><div class="heart p4 c-sky"></div>
-    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div>
-    <div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
+    <div class="heart p1 c-mint"></div><div class="heart p2 c-pink"></div><div class="heart p3 c-vio"></div><div class="heart p4 c-sky"></div>
+    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div><div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
   </div>
 
   <div class="burst bD s3">
-    <div class="heart p1 c-gold"></div><div class="heart p2 c-sky"></div>
-    <div class="heart p3 c-mint"></div><div class="heart p4 c-pink"></div>
-    <div class="heart p5 c-vio"></div><div class="heart p6 c-sky"></div>
-    <div class="heart p7 c-gold"></div><div class="heart p8 c-mint"></div>
+    <div class="heart p1 c-gold"></div><div class="heart p2 c-sky"></div><div class="heart p3 c-mint"></div><div class="heart p4 c-pink"></div>
+    <div class="heart p5 c-vio"></div><div class="heart p6 c-sky"></div><div class="heart p7 c-gold"></div><div class="heart p8 c-mint"></div>
   </div>
 
   <div class="burst bE s2">
-    <div class="heart p1 c-pink"></div><div class="heart p2 c-vio"></div>
-    <div class="heart p3 c-gold"></div><div class="heart p4 c-sky"></div>
-    <div class="heart p5 c-mint"></div><div class="heart p6 c-pink"></div>
-    <div class="heart p7 c-sky"></div><div class="heart p8 c-vio"></div>
+    <div class="heart p1 c-pink"></div><div class="heart p2 c-vio"></div><div class="heart p3 c-gold"></div><div class="heart p4 c-sky"></div>
+    <div class="heart p5 c-mint"></div><div class="heart p6 c-pink"></div><div class="heart p7 c-sky"></div><div class="heart p8 c-vio"></div>
   </div>
 
   <div class="burst bF s1">
-    <div class="heart p1 c-sky"></div><div class="heart p2 c-mint"></div>
-    <div class="heart p3 c-pink"></div><div class="heart p4 c-gold"></div>
-    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div>
-    <div class="heart p7 c-pink"></div><div class="heart p8 c-mint"></div>
+    <div class="heart p1 c-sky"></div><div class="heart p2 c-mint"></div><div class="heart p3 c-pink"></div><div class="heart p4 c-gold"></div>
+    <div class="heart p5 c-vio"></div><div class="heart p6 c-gold"></div><div class="heart p7 c-pink"></div><div class="heart p8 c-mint"></div>
   </div>
 
   <div class="burst bG s2">
-    <div class="heart p1 c-mint"></div><div class="heart p2 c-sky"></div>
-    <div class="heart p3 c-gold"></div><div class="heart p4 c-vio"></div>
-    <div class="heart p5 c-pink"></div><div class="heart p6 c-sky"></div>
-    <div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
+    <div class="heart p1 c-mint"></div><div class="heart p2 c-sky"></div><div class="heart p3 c-gold"></div><div class="heart p4 c-vio"></div>
+    <div class="heart p5 c-pink"></div><div class="heart p6 c-sky"></div><div class="heart p7 c-mint"></div><div class="heart p8 c-gold"></div>
   </div>
 
   <div class="burst bH s3">
-    <div class="heart p1 c-vio"></div><div class="heart p2 c-pink"></div>
-    <div class="heart p3 c-sky"></div><div class="heart p4 c-mint"></div>
-    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div>
-    <div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
+    <div class="heart p1 c-vio"></div><div class="heart p2 c-pink"></div><div class="heart p3 c-sky"></div><div class="heart p4 c-mint"></div>
+    <div class="heart p5 c-gold"></div><div class="heart p6 c-vio"></div><div class="heart p7 c-sky"></div><div class="heart p8 c-pink"></div>
   </div>
-</div>
 
-<!-- 텍스트/이미지 영역 -->
-<main class="content">
-  
-  <h1>💖 경축 💖</h1>
-  <h2 style="color:white;">전기처럼 짜릿한 남자 이경락</h2>
-  <h2 style="color:white;">빛의 속도로 드디어 결혼</h2>
-</main>
+</div>
 
 </body>
 </html>
